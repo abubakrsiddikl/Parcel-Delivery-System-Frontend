@@ -67,7 +67,10 @@ export default function Component() {
                 <NavigationMenuList className="flex-col items-start gap-0 md:gap-2">
                   {navigationLinks.map((link, index) => (
                     <NavigationMenuItem key={index} className="w-full">
-                      <NavigationMenuLink className="text-muted-foreground hover:text-primary py-1.5 font-medium">
+                      <NavigationMenuLink
+                        className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                        asChild
+                      >
                         <Link to={link.href}>{link.label}</Link>
                       </NavigationMenuLink>
                     </NavigationMenuItem>
@@ -84,7 +87,10 @@ export default function Component() {
               <NavigationMenuList className="gap-2">
                 {navigationLinks.map((link, index) => (
                   <NavigationMenuItem key={index}>
-                    <NavigationMenuLink className="text-muted-foreground hover:text-primary py-1.5 font-medium">
+                    <NavigationMenuLink
+                      className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                      asChild
+                    >
                       <Link to={link.href}>{link.label}</Link>
                     </NavigationMenuLink>
                   </NavigationMenuItem>
@@ -97,7 +103,6 @@ export default function Component() {
         <div className="flex items-center gap-2">
           <ModeToggle></ModeToggle>
           <Button asChild variant="outline" size="sm" className="text-sm">
-
             <Link to="/">Track Parcel</Link>
           </Button>
           <Button asChild size="sm" className="text-sm">
