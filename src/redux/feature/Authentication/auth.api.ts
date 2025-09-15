@@ -20,7 +20,7 @@ export const authApi = baseApi.injectEndpoints({
       }),
     }),
     // get profile
-    userProfile: builder.query<IResponse<IUser>, void>({
+    getUserProfile: builder.query<IResponse<IUser>, void>({
       query: () => ({
         url: "/user/me",
         method: "GET",
@@ -39,6 +39,6 @@ export const authApi = baseApi.injectEndpoints({
 export const {
   useRegisterMutation,
   useLoginMutation,
-  useUserProfileQuery,
+  useGetUserProfileQuery,
   useLogoutMutation,
 } = authApi;

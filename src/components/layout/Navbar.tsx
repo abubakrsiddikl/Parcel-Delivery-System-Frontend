@@ -11,7 +11,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { ModeToggle } from "./ModeToggle";
-import { Link } from "react-router";
+import {  Link } from "react-router";
+import { useGetUserProfileQuery } from "@/redux/feature/Authentication/auth.api";
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
@@ -22,6 +23,8 @@ const navigationLinks = [
 ];
 
 export default function Component() {
+  const { data: user } = useGetUserProfileQuery();
+
   return (
     <header className="border-b px-4 md:px-6">
       <div className="flex h-16 items-center justify-between gap-4">
@@ -105,9 +108,19 @@ export default function Component() {
           <Button asChild variant="outline" size="sm" className="text-sm">
             <Link to="/">Track Parcel</Link>
           </Button>
-          <Button asChild size="sm" className="text-sm">
-            <Link to="/login">Login</Link>
-          </Button>
+          {user?.data.email ? (
+            <>
+              <Button asChild size="sm" variant="outline" className="text-sm">
+               <Link to={"/"}> My Account</Link>
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button asChild size="sm" className="text-sm">
+                <Link to="/login">Login</Link>
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </header>
