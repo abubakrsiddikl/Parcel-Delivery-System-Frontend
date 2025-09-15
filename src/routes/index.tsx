@@ -9,6 +9,7 @@ import HomePage from "@/pages/HomePage";
 import { generateRoutes } from "@/utils/generateRoutes";
 import { createBrowserRouter } from "react-router";
 import { adminSidebarItems } from "./adminSidebarItems";
+import UnauthorizedPage from "@/pages/Unauthorized";
 
 export const router = createBrowserRouter([
   {
@@ -32,12 +33,16 @@ export const router = createBrowserRouter([
         Component: AuthPage,
         path: "/login",
       },
-      // admin dashboard
-      {
-        Component: DashboardLayout,
-        path: "/admin",
-        children: [...generateRoutes(adminSidebarItems)],
-      },
     ],
+  },
+  // admin dashboard
+  {
+    Component: DashboardLayout,
+    path: "/admin",
+    children: [...generateRoutes(adminSidebarItems)],
+  },
+  {
+    Component: UnauthorizedPage,
+    path: "/unauthorized",
   },
 ]);

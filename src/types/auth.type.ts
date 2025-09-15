@@ -1,11 +1,13 @@
 export type TRole = "admin" | "sender" | "receiver";
 
+export type IsActive = "ACTIVE" | "INACTIVE" | "BLOCKED" | "UNBLOCKED";
+
 export interface IUser {
   _id: string;
   name: string;
   email: string;
   isDeleted: boolean;
-  isActive: string;
+  isActive: IsActive;
   role: string;
   auths: Auth[];
   createdAt: string;

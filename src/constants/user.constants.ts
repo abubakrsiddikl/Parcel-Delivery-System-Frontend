@@ -1,0 +1,6 @@
+export const IsActive = {
+  ACTIVE: "ACTIVE",
+  INACTIVE: "INACTIVE",
+  BLOCKED: "BLOCKED",
+  UNBLOCKED: "UNBLOCKED",
+};

@@ -1,4 +1,5 @@
-import Analytics from "@/pages/Admin/Analytics";
+import AnalyticsPage from "@/pages/Admin/AnalyticsPage";
+import ManageAllUserPage from "@/pages/Admin/ManageAllUserPage";
 import type { ISidebarItem } from "@/types";
 
 export const adminSidebarItems: ISidebarItem[] = [
@@ -8,7 +9,12 @@ export const adminSidebarItems: ISidebarItem[] = [
       {
         title: "Analytics",
         url: "/admin/analytics",
-        component: Analytics,
+        component: AnalyticsPage,
+      },
+      {
+        title: "Manage All User",
+        url: "/admin/manage-all-users",
+        component: ManageAllUserPage,
       },
     ],
   },

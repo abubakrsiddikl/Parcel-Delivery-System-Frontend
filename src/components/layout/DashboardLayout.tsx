@@ -7,11 +7,13 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { Outlet } from "react-router";
+import { Toaster } from "sonner";
 
 export default function DashboardLayout() {
   return (
     <SidebarProvider>
       <AppSidebar />
+      <Toaster position="top-center"></Toaster>
       <SidebarInset className="min-w-0">
         <header className="flex h-16 shrink-0 items-center gap-2 border-b  px-4">
           <SidebarTrigger className="-ml-1" />

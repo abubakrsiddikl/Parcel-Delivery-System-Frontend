@@ -1,7 +1,7 @@
 import type { ComponentType } from "react";
 
 // auth
-export type { TRole,IUser } from "./auth.type";
+export type { TRole,IUser,IsActive } from "./auth.type";
 
 export interface TMeta {
   total: number;
