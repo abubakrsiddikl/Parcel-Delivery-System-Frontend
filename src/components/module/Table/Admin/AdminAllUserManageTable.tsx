@@ -47,7 +47,7 @@ export default function AdminManageAllUserTable({ users, onUpdate }: Props) {
 
   const handleConfirmUpdate = () => {
     if (!selectedUser) return;
-    console.log(selectedUser);
+    
     try {
       // Validate with Zod
       const parsed = userStatusSchema.parse({

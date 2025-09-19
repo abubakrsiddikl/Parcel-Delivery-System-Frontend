@@ -11,19 +11,40 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { ModeToggle } from "./ModeToggle";
-import {  Link } from "react-router";
-import { useGetUserProfileQuery } from "@/redux/feature/Authentication/auth.api";
+import { Link } from "react-router";
+import {
+  authApi,
+  useGetUserProfileQuery,
+  useLogoutMutation,
+} from "@/redux/feature/Authentication/auth.api";
+import { Role } from "@/constants/role.constants";
+
+import React from "react";
+import { useAppDispatch } from "@/redux/hook";
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
-  { href: "/", label: "Home", active: true },
+  { href: "/", label: "Home", role: "PUBLIC" },
 
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/about", label: "About", role: "PUBLIC" },
+  { href: "/contact", label: "Contact", role: "PUBLIC" },
+  // admin
+  { href: "/admin", label: "Dashboard", role: Role.ADMIN },
+  // sender
+  { href: "/sender", label: "Dashboard", role: Role.SENDER },
+  // receiver
+  { href: "/receiver", label: "Dashboard", role: Role.RECEIVER },
 ];
 
 export default function Component() {
   const { data: user } = useGetUserProfileQuery();
+  const [logout] = useLogoutMutation();
+  const dispatch = useAppDispatch();
+
+  const handleLogout = async () => {
+    await logout(undefined);
+    dispatch(authApi.util.resetApiState());
+  };
 
   return (
     <header className="border-b px-4 md:px-6">
@@ -84,19 +105,35 @@ export default function Component() {
           </Popover>
           {/* Main nav */}
           <div className="flex items-center gap-6">
-            <a href="#" className="text-primary hover:text-primary/90"></a>
+            <a href="#" className="text-primary hover:text-primary/90">
+              Logo
+            </a>
             {/* Navigation menu */}
             <NavigationMenu className="max-md:hidden">
               <NavigationMenuList className="gap-2">
                 {navigationLinks.map((link, index) => (
-                  <NavigationMenuItem key={index}>
-                    <NavigationMenuLink
-                      className="text-muted-foreground hover:text-primary py-1.5 font-medium"
-                      asChild
-                    >
-                      <Link to={link.href}>{link.label}</Link>
-                    </NavigationMenuLink>
-                  </NavigationMenuItem>
+                  <React.Fragment key={index}>
+                    {link.role === "PUBLIC" && (
+                      <NavigationMenuItem>
+                        <NavigationMenuLink
+                          className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                          asChild
+                        >
+                          <Link to={link.href}>{link.label}</Link>
+                        </NavigationMenuLink>
+                      </NavigationMenuItem>
+                    )}
+                    {link.role === user?.data.role && (
+                      <NavigationMenuItem>
+                        <NavigationMenuLink
+                          className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                          asChild
+                        >
+                          <Link to={link.href}>{link.label}</Link>
+                        </NavigationMenuLink>
+                      </NavigationMenuItem>
+                    )}
+                  </React.Fragment>
                 ))}
               </NavigationMenuList>
             </NavigationMenu>
@@ -108,18 +145,19 @@ export default function Component() {
           <Button asChild variant="outline" size="sm" className="text-sm">
             <Link to="/">Track Parcel</Link>
           </Button>
-          {user?.data.email ? (
-            <>
-              <Button asChild size="sm" variant="outline" className="text-sm">
-               <Link to={"/"}> My Account</Link>
-              </Button>
-            </>
-          ) : (
-            <>
-              <Button asChild size="sm" className="text-sm">
-                <Link to="/login">Login</Link>
-              </Button>
-            </>
+          {user?.data?.email && (
+            <Button
+              onClick={handleLogout}
+              variant="outline"
+              className="text-sm cursor-pointer"
+            >
+              Logout
+            </Button>
+          )}
+          {!user?.data?.email && (
+            <Button asChild className="text-sm">
+              <Link to="/login">Login</Link>
+            </Button>
           )}
         </div>
       </div>
