@@ -16,6 +16,7 @@ import { getSidebarItems } from "@/utils/getSidebarItems";
 import { useGetUserProfileQuery } from "@/redux/feature/Authentication/auth.api";
 import type { TRole } from "@/types";
 import { Link } from "react-router";
+import logo from "../assets/logo2.png";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { data: user } = useGetUserProfileQuery();
@@ -26,7 +27,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   return (
     <Sidebar {...props}>
-      <SidebarHeader></SidebarHeader>
+      <SidebarHeader>
+        <Link to={"/"}>
+          {" "}
+          <img src={logo} alt="" className="w-14 h-14" />
+        </Link>
+      </SidebarHeader>
       <SidebarContent>
         {/* We create a SidebarGroup for each parent. */}
         {data.navMain.map((item) => (

@@ -21,6 +21,7 @@ import { Role } from "@/constants/role.constants";
 
 import React from "react";
 import { useAppDispatch } from "@/redux/hook";
+import logo from "../../assets/logo2.png";
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
@@ -107,9 +108,9 @@ export default function Component() {
           </Popover>
           {/* Main nav */}
           <div className="flex items-center gap-6">
-            <a href="#" className="text-primary hover:text-primary/90">
-              Logo
-            </a>
+            <Link to={"/"} className="text-primary hover:text-primary/90">
+              <img src={logo} alt="logo" className="w-14 h-14" />
+            </Link>
             {/* Navigation menu */}
             <NavigationMenu className="max-md:hidden">
               <NavigationMenuList className="gap-2">
