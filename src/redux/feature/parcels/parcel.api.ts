@@ -13,6 +13,18 @@ export const parcelsApi = baseApi.injectEndpoints({
       invalidatesTags: ["PARCELS"],
     }),
 
+    // update parcel status
+    updateParcelStatus: builder.mutation<
+      IResponse<IParcel>,
+      { id: string; newStatus: string }
+    >({
+      query: ({ id, newStatus }) => ({
+        url: `/parcels/${id}/status`,
+        method: "PATCH",
+        data: { newStatus },
+      }),
+    }),
+
     // get all parcels
     getAllParcels: builder.query<
       IResponse<IParcel[]>,
@@ -35,11 +47,32 @@ export const parcelsApi = baseApi.injectEndpoints({
       }),
       providesTags: ["PARCELS"],
     }),
+
+    // get single parcel
+    getSingleParcel: builder.query<IResponse<IParcel>, string>({
+      query: (parcelId) => ({
+        url: `/parcels/${parcelId}`,
+        method: "GET",
+      }),
+      providesTags: ["PARCELS"],
+    }),
+
+    // parcel track
+    trackParcel: builder.query<IResponse<IParcel>, string>({
+      query: (trackingId) => ({
+        url: `/parcels/track/${trackingId}`,
+        method: "GET",
+      }),
+      providesTags: ["PARCELS"],
+    }),
   }),
 });
 
 export const {
   useCreateParcelsMutation,
+  useUpdateParcelStatusMutation,
   useGetAllParcelsQuery,
   useGetMyParcelQuery,
+  useGetSingleParcelQuery,
+  useTrackParcelQuery,
 } = parcelsApi;

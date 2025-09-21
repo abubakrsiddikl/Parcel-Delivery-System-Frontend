@@ -14,7 +14,7 @@ export interface IParcel {
   trackingId: string;
   type: string;
   weight: number;
-  fee: number;
+  deliveryCharge: number;
   deliveryAddress: string;
   sender: Sender;
   currentStatus: string;

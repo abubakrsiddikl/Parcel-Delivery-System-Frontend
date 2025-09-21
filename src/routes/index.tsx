@@ -15,6 +15,8 @@ import { Role } from "@/constants/role.constants";
 import type { TRole } from "@/types";
 import { senderSidebarItems } from "./senderSidebarItems";
 import { receiverSidebarItems } from "./receiverSidebarItems";
+import ParcelDetailsPage from "@/pages/Parcel/ParcelDetailsPage";
+import ParcelTrack from "@/pages/ParcelTrack";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +39,17 @@ export const router = createBrowserRouter([
       {
         Component: AuthPage,
         path: "/login",
+      },
+
+      // parcel details
+      {
+        Component: ParcelDetailsPage,
+        path: "parcel-details/:id",
+      },
+      // track parcel
+      {
+        Component: ParcelTrack,
+        path: "/track/parcel",
       },
     ],
   },

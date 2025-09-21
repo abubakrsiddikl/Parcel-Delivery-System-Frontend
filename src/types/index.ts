@@ -4,7 +4,7 @@ import type { ComponentType } from "react";
 export type { TRole, IUser, IsActive } from "./auth.type";
 
 // parcel
-export type { IParcel, IParcelPayload } from "./parcels.type";
+export type { IParcel, IParcelPayload, PARCEL_STATUS } from "./parcels.type";
 
 export interface TMeta {
   total: number;

@@ -11,7 +11,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { ModeToggle } from "./ModeToggle";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import {
   authApi,
   useGetUserProfileQuery,
@@ -40,9 +40,11 @@ export default function Component() {
   const { data: user } = useGetUserProfileQuery();
   const [logout] = useLogoutMutation();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     await logout(undefined);
+    navigate("/");
     dispatch(authApi.util.resetApiState());
   };
 
@@ -143,7 +145,7 @@ export default function Component() {
         <div className="flex items-center gap-2">
           <ModeToggle></ModeToggle>
           <Button asChild variant="outline" size="sm" className="text-sm">
-            <Link to="/">Track Parcel</Link>
+            <Link to="/track/parcel">Track Parcel</Link>
           </Button>
           {user?.data?.email && (
             <Button
