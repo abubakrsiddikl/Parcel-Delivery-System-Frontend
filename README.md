@@ -33,6 +33,7 @@ SwiftSend is a full-featured parcel management platform with:
 - [Lucide React Icons](https://lucide.dev/)  
 
 **Backend (separate repo):**
+- [TypeScript](https://www.typescriptlang.org/) 
 - [Node.js](https://nodejs.org/)  
 - [Express.js](https://expressjs.com/)  
 - [MongoDB](https://www.mongodb.com/)  
