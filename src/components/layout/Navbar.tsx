@@ -93,14 +93,28 @@ export default function Component() {
               <NavigationMenu className="max-w-none *:w-full">
                 <NavigationMenuList className="flex-col items-start gap-0 md:gap-2">
                   {navigationLinks.map((link, index) => (
-                    <NavigationMenuItem key={index} className="w-full">
-                      <NavigationMenuLink
-                        className="text-muted-foreground hover:text-primary py-1.5 font-medium"
-                        asChild
-                      >
-                        <Link to={link.href}>{link.label}</Link>
-                      </NavigationMenuLink>
-                    </NavigationMenuItem>
+                    <React.Fragment key={index}>
+                      {link?.role === "PUBLIC" && (
+                        <NavigationMenuItem>
+                          <NavigationMenuLink
+                            className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                            asChild
+                          >
+                            <Link to={link?.href}>{link?.label}</Link>
+                          </NavigationMenuLink>
+                        </NavigationMenuItem>
+                      )}
+                      {link?.role === user?.data?.role && (
+                        <NavigationMenuItem>
+                          <NavigationMenuLink
+                            className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                            asChild
+                          >
+                            <Link to={link?.href}>{link?.label}</Link>
+                          </NavigationMenuLink>
+                        </NavigationMenuItem>
+                      )}
+                    </React.Fragment>
                   ))}
                 </NavigationMenuList>
               </NavigationMenu>
@@ -116,17 +130,17 @@ export default function Component() {
               <NavigationMenuList className="gap-2">
                 {navigationLinks.map((link, index) => (
                   <React.Fragment key={index}>
-                    {link.role === "PUBLIC" && (
+                    {link?.role === "PUBLIC" && (
                       <NavigationMenuItem>
                         <NavigationMenuLink
                           className="text-muted-foreground hover:text-primary py-1.5 font-medium"
                           asChild
                         >
-                          <Link to={link.href}>{link.label}</Link>
+                          <Link to={link?.href}>{link?.label}</Link>
                         </NavigationMenuLink>
                       </NavigationMenuItem>
                     )}
-                    {link.role === user?.data.role && (
+                    {link?.role === user?.data?.role && (
                       <NavigationMenuItem>
                         <NavigationMenuLink
                           className="text-muted-foreground hover:text-primary py-1.5 font-medium"
