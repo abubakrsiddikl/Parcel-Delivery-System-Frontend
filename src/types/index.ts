@@ -6,6 +6,15 @@ export type { TRole, IUser, IsActive } from "./auth.type";
 // parcel
 export type { IParcel, IParcelPayload, PARCEL_STATUS } from "./parcels.type";
 
+export type {
+  IStats,
+  Overview,
+  Users,
+  IChartStats,
+  MonthlyShipment,
+  StatusDistribution,
+} from "./stats.type";
+
 export interface TMeta {
   total: number;
   totalPage: number;

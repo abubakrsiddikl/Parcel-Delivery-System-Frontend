@@ -65,6 +65,7 @@ export const parcelsApi = baseApi.injectEndpoints({
       }),
       providesTags: ["PARCELS"],
     }),
+
   }),
 });
 
